@@ -45,33 +45,30 @@ void actualizar(ostream& terremotos, istream& ultimos, const string codEvento,
 }
 
 
-
 /*
- * Pre:  Si los ficheros «nombreFicheroTerremotos» y «nombreFicheroUltimos»
- *       existen, son ficheros de texto cuyos contenidos cumplen con la regla
- *       sintáctica <fichero-terremotos> y el resto de restricciones 
- *       establecidas en el enunciado. Además, el primer terremoto de 
- *       «nombreFicheroUltimos» es igual o posterior al primer evento de 
- *       «nombreFicheroTerremotos». Análogamente, el último terremoto de 
- *       «nombreFicheroUltimos» es también igual o posterior al primer
- *       evento de «nombreFicheroTerremotos».
+ * Pre:  Si los ficheros «nombreFicheroTerremotos» y «nombreFicheroUltimos» existen, 
+ *       son ficheros de texto cuyos contenidos cumplen con la regla sintáctica
+ *       <fichero-terremotos> y el resto de restricciones establecidas en el
+ *       enunciado. Además, el primer terremoto de «nombreFicheroUltimos» es igual o 
+ *       posterior al primer evento de «nombreFicheroTerremotos». Análogamente, el 
+ *       último terremoto de «nombreFicheroUltimos» es también igual o posterior al
+ *       primer evento de «nombreFicheroTerremotos».
  * Post: Tras ser ejecucada, esta función ha actualizado los datos del fichero
  *       «nombreFicheroTerremotos» con los datos de los terremotos del fichero
  *       «nombreFicheroUltimos», añadiendo únicamente los terremotos de
  *       «nombreFicheroUltimos» que no se encontraran inicialmente en 
- *       «nombreFicheroTerremotos». Si ha podido abrir correctamente ambos
- *       ficheros, ha asignado al parámetro «numSismosNuevos» el número de 
- *       terremotos añadidos al fichero «nombreFicheroTerremotos» y ha
- *       devuelto «RESULTADO_OK». En caso contrario, ha escrito un mensaje de
- *       error en «cerr» y ha devuelto «RESULTADO_ERROR_FICH_TERREMOTOS» si el
- *       fichero que no se ha podido abrir ha sido «nombreFicheroTerremotos» o
- *       «RESULTADO_ERROR_OTRO_FICH» si el que no se ha podido abrir ha sido
- *       «nombreFicheroUltimos».
+ *       «nombreFicheroTerremotos». Si ha podido abrir correctamente ambos ficheros,
+ *       ha asignado al parámetro «numSismosNuevos» el número de terremotos añadidos
+ *       al fichero «nombreFicheroTerremotos» y ha asignado a «resultadoFichs» el
+ *       valor «RESULTADO_OK». En caso contrario, ha escrito un mensaje de error en
+ *       «cerr» y ha asignado a «resultadoFichs» el valor
+ *       «RESULTADO_ERROR_FICH_TERREMOTOS» si el fichero que no se ha podido abrir ha
+ *       sido «nombreFicheroTerremotos» o «RESULTADO_ERROR_OTRO_FICH» si el que no se
+ *       ha podido abrir ha sido «nombreFicheroUltimos».
  */
-unsigned actualizar(const string nombreFicheroTerremotos,
+void actualizar(const string nombreFicheroTerremotos,
                 const string nombreFicheroUltimos, const string codEvento,
-                unsigned& numSismosNuevos) {
-    unsigned resultadoFichs;
+                unsigned& numSismosNuevos, unsigned& resultadoFichs) {
     ofstream terremotos(nombreFicheroTerremotos, ios::app);
     if (terremotos.is_open()) {
         ifstream ultimos(nombreFicheroUltimos);
@@ -92,10 +89,7 @@ unsigned actualizar(const string nombreFicheroTerremotos,
              << "\" para la concatenación de datos." << endl;
         resultadoFichs = RESULTADO_ERROR_FICH_TERREMOTOS;
     }
-    return resultadoFichs;
 }
-
-
 
 
 /*
@@ -120,9 +114,9 @@ unsigned actualizar(const string nombreFicheroTerremotos,
 int main() {
     string codEvento;
     if (obtenerUltimoCodigo(FICH_TERREMOTOS, codEvento)) {
-        unsigned numSismosNuevos;
-        unsigned resultadoFichs = actualizar(FICH_TERREMOTOS, FICH_ULTIMOS, 
-                                             codEvento, numSismosNuevos);
+        unsigned numSismosNuevos, resultadoFichs;
+        actualizar(FICH_TERREMOTOS, FICH_ULTIMOS, codEvento, 
+                   numSismosNuevos, resultadoFichs);
         if (resultadoFichs == RESULTADO_OK) {
             cout << "Se han añadido " << numSismosNuevos 
                  << " eventos al fichero \"" << FICH_TERREMOTOS << "\"." 
