@@ -76,15 +76,13 @@ void actualizar(const string nombreFicheroTerremotos,
             actualizar(terremotos, ultimos, codEvento, numSismosNuevos);
             ultimos.close();
             resultadoFichs = RESULTADO_OK;
-        }
-        else {
+        } else {
             cerr << "No ha podido abrirse el fichero \"" << nombreFicheroUltimos
                  << "\"." << endl;
             resultadoFichs = RESULTADO_ERROR_OTRO_FICH;
         }
         terremotos.close();
-    }
-    else {
+    } else {
         cerr << "No ha podido abrirse el fichero \"" << nombreFicheroTerremotos
              << "\" para la concatenación de datos." << endl;
         resultadoFichs = RESULTADO_ERROR_FICH_TERREMOTOS;
@@ -123,8 +121,7 @@ int main() {
                  << endl;
         }
         return resultadoFichs;
-    }
-    else {
+    } else {
         return RESULTADO_ERROR_FICH_TERREMOTOS;
     }
 }

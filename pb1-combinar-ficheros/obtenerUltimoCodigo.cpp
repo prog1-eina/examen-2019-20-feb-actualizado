@@ -23,8 +23,7 @@ bool obtenerUltimoCodigo(const string nombreFicheroTerremotos, string& codEvento
         }
         f.close();
         return true;
-    }
-    else {
+    } else {
         cerr << "No ha podido abrirse el fichero \"" << nombreFicheroTerremotos
              << "\"." << endl;
         return false;

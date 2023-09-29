@@ -59,8 +59,7 @@ bool inicializarProvincias(const string nombreFicheroProvincias,
         }
         f.close();
         return true;
-    }
-    else {
+    } else {
         cerr << "No ha podido abrirse el fichero \""
              << nombreFicheroProvincias << "\"." << endl;
         return false;
@@ -133,8 +132,7 @@ bool leerTerremotos(const string nombreFicheroTerremotos,
         }
         f.close();
         return true;
-    }
-    else {
+    } else {
         cerr << "No ha podido abrirse el fichero \"" 
              << nombreFicheroTerremotos << "\"." << endl;
         return false;
@@ -255,12 +253,10 @@ int main() {
             ordenar(sismicidad);
             mostrar(sismicidad);
             return RESULTADO_OK;        
-        }
-        else {
+        } else {
             return RESULTADO_ERROR_FICH_TERREMOTOS;
         }
-    }
-    else {
+    } else {
         return RESULTADO_ERROR_OTRO_FICH;
     }
 }
