@@ -1,5 +1,5 @@
 @echo off
-mingw32-make pb1
+make pb1
 copy pb1-combinar-ficheros\*.csv bin\
 cd bin
 chcp 65001

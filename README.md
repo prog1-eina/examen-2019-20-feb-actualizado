@@ -18,12 +18,6 @@ Para compilarlo, hay que ejecutar el comando
     make pb1
 ```
 
-o, en Windows,
-
-```shell
-    mingw32-make pb1
-```
-
 Para compilarlo y ejecutarlo, en Windows,
 
 ```shell
@@ -36,12 +30,6 @@ Para compilarlo, hay que ejecutar el comando
 
 ```shell
     make pb2
-```
-
-o, en Windows,
-
-```shell
-    mingw32-make pb2
 ```
 
 Para compilarlo y ejecutarlo, en Windows,
