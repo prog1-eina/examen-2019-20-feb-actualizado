@@ -28,8 +28,8 @@ using namespace std;
  *       asignado al parámetro «numSismosNuevos» el número de terremotos
  *       añadidos al flujo «ultimos».
  */
-void actualizar(ostream& terremotos, istream& ultimos, const string codEvento,
-               unsigned& numSismosNuevos) {
+void actualizar(ostream &terremotos, istream &ultimos, const string codEvento,
+               unsigned &numSismosNuevos) {
     numSismosNuevos = 0;
     string codEventoLeido;
     while (getline(ultimos, codEventoLeido, DELIMITADOR)) {
@@ -68,7 +68,7 @@ void actualizar(ostream& terremotos, istream& ultimos, const string codEvento,
  */
 void actualizar(const string nombreFicheroTerremotos,
                 const string nombreFicheroUltimos, const string codEvento,
-                unsigned& numSismosNuevos, unsigned& resultadoFichs) {
+                unsigned &numSismosNuevos, unsigned &resultadoFichs) {
     ofstream terremotos(nombreFicheroTerremotos, ios::app);
     if (terremotos.is_open()) {
         ifstream ultimos(nombreFicheroUltimos);

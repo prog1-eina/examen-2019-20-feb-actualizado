@@ -79,7 +79,7 @@ bool inicializarProvincias(const string nombreFicheroProvincias,
  *       Ha devuelto true si no se han terminado los datos del fichero en el
  *       intento de lectura y false en caso contrario.
  */
-bool leerTerremoto(istream& f, double& magnitud, unsigned& codProvincia) {
+bool leerTerremoto(istream &f, double &magnitud, unsigned &codProvincia) {
     // También se podría haber optado por
     // repetir la instrucción 4 veces a través de un bucle for.
     string ignorar;
@@ -147,7 +147,7 @@ bool leerTerremotos(const string nombreFicheroTerremotos,
  *       función «intercambiar» podría no formar parte de la solución
  *       proporcionada por los estudiantes a este problema.
  */
-void intercambiar(SismicidadProvincial& a, SismicidadProvincial& b) {
+void intercambiar(SismicidadProvincial &a, SismicidadProvincial &b) {
     SismicidadProvincial temp = a;
     a = b;
     b = temp;

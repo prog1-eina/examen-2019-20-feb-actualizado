@@ -15,7 +15,7 @@ using namespace std;
  *       devuelto «false».
  */
 bool obtenerUltimoCodigo(const string nombreFicheroTerremotos, 
-                         string& codEvento) {
+                         string &codEvento) {
     ifstream f(nombreFicheroTerremotos);
     if (f.is_open()) {
         string cabecera;
