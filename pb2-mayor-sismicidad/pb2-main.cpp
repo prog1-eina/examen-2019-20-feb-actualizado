@@ -124,8 +124,7 @@ void leerTerremotos(const string nombreFicheroTerremotos,
     if (f.is_open()) {
         // Extracción de la cabecera del fichero  
         string cabecera;
-        getline(f, cabecera); 
-        
+        getline(f, cabecera);         
         double magnitud;
         unsigned codProvincia;
         while (leerTerremoto(f, magnitud, codProvincia)) {
