@@ -44,9 +44,11 @@ struct SismicidadProvincial {
  *       componente, según los datos del fichero «nombreFicheroProvincias».
  *       Los valores de los otros campos no se han modificado. El valor de
  *       sismicidad[0] no está determinado.
+ *       Ha asignado a «lecturaOk» el valor true si ha podido abrirse el
+ *       fichero «nombreFicheroProvincias» y false en caso contrario.
  */
-bool inicializarProvincias(const string nombreFicheroProvincias,
-                            SismicidadProvincial sismicidad[]) {
+void inicializarProvincias(const string nombreFicheroProvincias,
+        SismicidadProvincial sismicidad[], bool &lecturaOk) {
     ifstream f(nombreFicheroProvincias);
     if (f.is_open()) {
         unsigned codProvincia;
@@ -58,11 +60,11 @@ bool inicializarProvincias(const string nombreFicheroProvincias,
             getline(f, sismicidad[codProvincia].provincia);
         }
         f.close();
-        return true;
+        lecturaOk = true;
     } else {
         cerr << "No ha podido abrirse el fichero \""
              << nombreFicheroProvincias << "\"." << endl;
-        return false;
+        lecturaOk = false;
     }    
 }
 
@@ -113,9 +115,11 @@ bool leerTerremoto(istream &f, double &magnitud, unsigned &codProvincia) {
  *       «nombreFicheroTerremotos». Los valores de los nombres de las
  *       provincias (campo «provincia») no se han modificado.
  *       El valor de sismicidad[0] no está determinado.
+ *       Ha asignado a «lecturaOk» el valor true si ha podido abrirse el
+ *       fichero «nombreFicheroTerremotos» y false en caso contrario.
  */
-bool leerTerremotos(const string nombreFicheroTerremotos,
-                    SismicidadProvincial sismicidad[]) {
+void leerTerremotos(const string nombreFicheroTerremotos,
+                    SismicidadProvincial sismicidad[], bool &lecturaOk) {
     ifstream f(nombreFicheroTerremotos);
     if (f.is_open()) {
         // Extracción de la cabecera del fichero  
@@ -131,11 +135,11 @@ bool leerTerremotos(const string nombreFicheroTerremotos,
             sismicidad[codProvincia].sumaMagnitudes += magnitud;
         }
         f.close();
-        return true;
+        lecturaOk = true;
     } else {
         cerr << "No ha podido abrirse el fichero \"" 
              << nombreFicheroTerremotos << "\"." << endl;
-        return false;
+        lecturaOk = false;
     }
 }
 
@@ -248,15 +252,15 @@ int main() {
     // en la definición del tipo registro «SismicidadProvincial».
     SismicidadProvincial sismicidad[NUM_PROVINCIAS + 1];
     
-    if (inicializarProvincias(FICH_PROVINCIAS, sismicidad)) {
-        if (leerTerremotos(FICH_TERREMOTOS, sismicidad)) {
+    bool lecturaOk;
+    inicializarProvincias(FICH_PROVINCIAS, sismicidad, lecturaOk);
+    if (lecturaOk) {
+        leerTerremotos(FICH_TERREMOTOS, sismicidad, lecturaOk);
+        if (lecturaOk) {
             ordenar(sismicidad);
             mostrar(sismicidad);
-            return RESULTADO_OK;        
-        } else {
-            return RESULTADO_ERROR_FICH_TERREMOTOS;
+            return 0;
         }
-    } else {
-        return RESULTADO_ERROR_OTRO_FICH;
     }
+    return 1;
 }
