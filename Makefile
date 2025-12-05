@@ -11,7 +11,7 @@ VPATH = $(SOURCE_PB1_DIR) $(SOURCE_PB2_DIR)
 
 ## COMPILADOR Y OPCIONES DE COMPILACIÓN:
 CXX = g++
-CXXFLAGS = -g -Wall -Wextra -I.
+CXXFLAGS = -Og -Wall -Wextra -I.
 
 
 ## FICHEROS OBJETO (RESULTADOS INTERMEDIOS DE COMPILACIÓN):
@@ -22,10 +22,10 @@ OBJECTS_PB2 = $(BUILD_DIR)/pb2-main.o
 ## Reglas del fichero «Makefile»
 
 pb1: $(OBJECTS_PB1) | $(BIN_DIR)  
-	$(CXX) -g $^ -o $(BIN_DIR)/$@ 
+	$(CXX) -Og $^ -o $(BIN_DIR)/$@ 
 
 pb2: $(OBJECTS_PB2) | $(BIN_DIR)
-	$(CXX) -g $^ -o $(BIN_DIR)/$@ 
+	$(CXX) -Og $^ -o $(BIN_DIR)/$@ 
 
 $(BUILD_DIR)/%.o: %.cpp | $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@  
