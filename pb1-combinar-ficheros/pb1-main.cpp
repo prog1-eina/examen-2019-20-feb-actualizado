@@ -12,24 +12,26 @@ using namespace std;
 
 
 /*
- * Pre:  Los flujos «terremotos» y «ultimos» están abiertos y asociados con
- *       ficheros de texto cuyos contenidos cumplen con la regla sintáctica
+ * Pre:  Los flujos «terremotos» y «ultimos» están abiertos y asociados con ficheros
+ *       de texto cuyos contenidos cumplen con la regla sintáctica
  *       <fichero-terremotos> y el resto de restricciones establecidas en el
  *       enunciado. Se está en disposición de leer desde el principio del flujo
- *       «ultimos» flujos y en disposición de escribir a partir del final del
- *       flujo «terremotos». Además, el primer terremoto del flujo «terremotos»
- *       es igual o anterior al primer evento del flujo «ultimos».
- *       Análogamente, el último terremoto de «ultimos» es igual o posterior al
- *       primer evento del flujo «terremotos».
+ *       «ultimos» flujos y en disposición de escribir a partir del final del flujo
+ *       «terremotos». Además, el primer terremoto del flujo «terremotos» es igual o
+ *       anterior al primer evento del flujo «ultimos». Análogamente, el último
+ *       terremoto de «ultimos» es igual o posterior al primer evento del flujo
+ *       «terremotos».
  * Post: Tras ser ejecutada, esta función ha actualizado los datos del flujo
- *       «terremotos» con los datos de los terremotos del flujo «ultimos»,
- *       añadiendo únicamente la información de los terremotos del flujo
- *       «ultimos» que no se encontraran inicialmente en «terremotos». Ha
- *       asignado al parámetro «numSismosNuevos» el número de terremotos
- *       añadidos al flujo «ultimos».
+ *       «terremotos» con los datos de los terremotos del flujo «ultimos», añadiendo
+ *       únicamente la información de los terremotos del flujo «ultimos» que no se
+ *       encontraran inicialmente en «terremotos». Ha asignado al parámetro
+ *       «numSismosNuevos» el número de terremotos añadidos al flujo «ultimos».
  */
 void actualizar(ostream &terremotos, istream &ultimos, const string codEvento,
                unsigned &numSismosNuevos) {
+    string cabecera;
+    getline(ultimos, cabecera);
+
     numSismosNuevos = 0;
     string codEventoLeido;
     while (getline(ultimos, codEventoLeido, DELIMITADOR)) {
